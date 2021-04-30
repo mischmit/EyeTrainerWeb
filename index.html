@@ -3,12 +3,20 @@
 <head>
     <title>EyeTrainerWeb</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 
 <body>
-    <canvas id="mainCanvas"></canvas>
     <script src="game.js"></script>
     <script src="main.js"></script>
+    <div id="app"><game-canvas></game-canvas></div>
+    <script>
+var app = new Vue({
+    el : '#app',
+    data : {},
+});
+    </script>
 </body>
+
 
 </html>

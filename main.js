@@ -1,10 +1,5 @@
 let time_delta = 700;
 
-function getCanvas()
-{
-    return document.getElementById('mainCanvas');
-}
-
 function clear(canvas)
 {
     let context = canvas.getContext('2d');
@@ -12,9 +7,8 @@ function clear(canvas)
     context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function initCanvasSize()
+function initCanvasSize(canvas)
 {
-    let canvas = getCanvas();
     canvas.width = document.body.clientWidth;
     canvas.height = document.body.clientHeight;
     clear(canvas);
@@ -48,22 +42,29 @@ let cycle = [
     }
 ];
 
-function run(i)
+function run(canvas, i)
 {
-    let canvas = getCanvas();
     cycle[i](game, canvas);
     let next_i = (i + 1) % cycle.length;
-    setTimeout(() => run(next_i), cycle_times[i] * time_delta);
+    setTimeout(() => run(canvas, next_i), cycle_times[i] * time_delta);
 }
 
-function start_game()
-{
-    run(0);
-}
-
-window.onresize = initCanvasSize;
 document.onkeypress = onkeypress;
 
-initCanvasSize();
-
-start_game();
+Vue.component('GameCanvas', {
+    template : `
+    <div>
+      <canvas ref="canvas"/>
+    </div>`,
+    mounted() {
+        window.onresize = () => initCanvasSize(this.$refs.canvas);
+        initCanvasSize(this.$refs.canvas);
+        this.start_game();
+    },
+    methods: {
+        start_game()
+        {
+            run(this.$refs.canvas, 0);
+        }
+    }
+});
