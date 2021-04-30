@@ -68,3 +68,15 @@ Vue.component('GameCanvas', {
         }
     }
 });
+
+var app = new Vue({
+    el : '#app',
+    data : {
+        gameRunning : false
+    },
+    methods:{
+        runGame() {
+            this.gameRunning = true;
+        }
+    }
+});

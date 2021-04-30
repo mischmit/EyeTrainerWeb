@@ -7,15 +7,15 @@
 </head>
 
 <body>
+    <div id="app">
+        <game-canvas v-if="gameRunning"></game-canvas>
+        <div v-else>
+            <h1>Welcome to EyeTrainer</h1>
+            <button v-on:click="runGame()">Start</button>
+        </div>
+    </div>
     <script src="game.js"></script>
     <script src="main.js"></script>
-    <div id="app"><game-canvas></game-canvas></div>
-    <script>
-var app = new Vue({
-    el : '#app',
-    data : {},
-});
-    </script>
 </body>
 
 
