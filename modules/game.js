@@ -1,4 +1,7 @@
-var ALL_QUADRANTS = [ [ -1, 1 ], [ 1, 1 ], [ 1, -1 ], [ -1, -1 ] ];
+import {Test} from './test.js'
+import {Cell} from './cell.js'
+
+let ALL_QUADRANTS = [ [ -1, 1 ], [ 1, 1 ], [ 1, -1 ], [ -1, -1 ] ];
 
 function shuffle(a)
 {
@@ -8,64 +11,6 @@ function shuffle(a)
         [a[i], a[j]] = [ a[j], a[i] ];
     }
     return a;
-}
-
-class Cell
-{
-    constructor(x, y)
-    {
-        this.x = x;
-        this.y = y;
-        this.ref_count = 0;
-        this.count_hit = 0;
-        this.count_missed = 0;
-    }
-
-    hit()
-    {
-        this.count_hit++;
-    }
-
-    missed()
-    {
-        this.count_missed++;
-    }
-
-    is_quadrant(quadrant)
-    {
-        this.x * quadrant[0] > 0 && this.y * quadrant[1] > 1;
-    }
-}
-
-class Test
-{
-    constructor(cell)
-    {
-        this.cell = cell;
-        this.pressed = undefined;
-        this.ref_count += 1;
-    }
-
-    press()
-    {
-        this.pressed = true;
-    }
-
-    done()
-    {
-        if (this.pressed === undefined)
-        {
-            this.pressed = false;
-        }
-        if (this.pressed)
-        {
-            this.cell.hit();
-        }
-        else
-        {
-            this.cell.missed();
-        }
-    }
 }
 
 class Game
@@ -165,3 +110,5 @@ class Game
         return this.current_test_index >= this.tests.length - 1;
     }
 }
+
+export {Game};

@@ -1,3 +1,6 @@
+import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js'
+import {Game} from './modules/game.js'
+
 let time_delta = 700;
 
 function clear(canvas)
@@ -61,9 +64,8 @@ Vue.component('GameCanvas', {
         initCanvasSize(this.$refs.canvas);
         this.start_game();
     },
-    methods: {
-        start_game()
-        {
+    methods : {
+        start_game() {
             run(this.$refs.canvas, 0);
         }
     }
@@ -71,10 +73,8 @@ Vue.component('GameCanvas', {
 
 var app = new Vue({
     el : '#app',
-    data : {
-        gameRunning : false
-    },
-    methods:{
+    data : {gameRunning : false},
+    methods : {
         runGame() {
             this.gameRunning = true;
         }
