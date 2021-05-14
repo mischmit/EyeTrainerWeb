@@ -21,7 +21,7 @@ class Cell
 
     is_quadrant(quadrant)
     {
-        this.x * quadrant[0] > 0 && this.y * quadrant[1] > 1;
+        return this.x * quadrant[0] > 0 && this.y * quadrant[1] > 1;
     }
 }
 
