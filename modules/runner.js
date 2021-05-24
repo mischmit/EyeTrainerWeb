@@ -49,7 +49,7 @@ class Runner
     {
         cycle[i](this.game, this.canvas);
         let next_i = (i + 1) % cycle.length;
-        setTimeout(() => this.run(this.canvas, next_i), cycle_times[i] * time_delta);
+        setTimeout(() => this.run(next_i), cycle_times[i] * time_delta);
     }
 }
 

@@ -1,5 +1,6 @@
 import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js'
-import {Runner} from './modules/runner.js'
+import { Runner } from './modules/runner.js'
+import { Game } from './modules/game.js'
 
 function initCanvasSize(canvas)
 {
@@ -17,10 +18,7 @@ Vue.component('GameCanvas', {
         initCanvasSize(this.$refs.canvas);
         this.start_runner();
     },
-    data:{
-        runner: null,
-        game: null
-    },
+    props : [ "game" ],
     methods : {
         start_runner() {
             this.runner = new Runner(this.game, this.$refs.canvas);
