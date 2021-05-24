@@ -7,8 +7,8 @@
 
 <body>
     <div id="app">
-        <game-canvas v-if="gameRunning" :game="game"></game-canvas>
-        <div v-else>
+        <game-canvas v-if="state == 'game'" :game="game" :runner_settings="runner_settings"></game-canvas>
+        <div v-if="state == 'intro'">
             <h1>EyeTrainer</h1>
             <h2>Usage description</h2>
             <div>
@@ -27,7 +27,13 @@
                     </li>
                 </ul>
                 <button v-on:click="runGame()">Start Training</button>
+
+                <button v-on:click="openSettings()">Open Settings</button>
             </div>
+        </div>
+        <div v-if="state == 'settings'">
+            <input v-model="runner_settings.time_delta" type="number">
+            <button v-on:click="openMenu()">Back</button>
         </div>
     </div>
     <script type="module" src="main.js"></script>

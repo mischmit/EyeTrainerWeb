@@ -1,7 +1,3 @@
-import {Game} from './game.js'
-
-let time_delta = 700;
-
 function clear(canvas)
 {
     let context = canvas.getContext('2d');
@@ -29,9 +25,10 @@ let cycle = [
 
 class Runner
 {
-    constructor(game, canvas)
+    constructor(game, runner_settings, canvas)
     {
         this.game = game;
+        this.settings = runner_settings;
         this.canvas = canvas;
         document.onkeypress = (e) => this.onkeypress(e);
         this.run(0);
@@ -49,7 +46,7 @@ class Runner
     {
         cycle[i](this.game, this.canvas);
         let next_i = (i + 1) % cycle.length;
-        setTimeout(() => this.run(next_i), cycle_times[i] * time_delta);
+        setTimeout(() => this.run(next_i), cycle_times[i] * this.settings.time_delta);
     }
 }
 
