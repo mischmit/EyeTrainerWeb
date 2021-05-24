@@ -29,12 +29,14 @@ let cycle = [
 
 class Runner
 {
-    constructor()
+    constructor(game, canvas)
     {
-        this.game = new Game(16, 32, [ 3, 1, 1, 2 ]);
+        this.game = game;
+        this.canvas = canvas;
         document.onkeypress = (e) => this.onkeypress(e);
+        this.run(0);
     }
-    
+
     onkeypress(e)
     {
         if (e.key == ' ')
@@ -43,16 +45,11 @@ class Runner
         }
     }
 
-    run(canvas, i)
+    run(i)
     {
-        cycle[i](this.game, canvas);
+        cycle[i](this.game, this.canvas);
         let next_i = (i + 1) % cycle.length;
-        setTimeout(() => this.run(canvas, next_i), cycle_times[i] * time_delta);
-    }
-
-    start(canvas)
-    {
-        this.run(canvas, 0);
+        setTimeout(() => this.run(next_i), cycle_times[i] * time_delta);
     }
 }
 

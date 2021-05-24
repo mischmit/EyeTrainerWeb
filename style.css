@@ -1,5 +1,15 @@
 body
 {
-    padding: 0;
-    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    background-color: black;
+}
+
+canvas
+{
+    position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
 }
