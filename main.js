@@ -7,8 +7,6 @@ function initCanvasSize(canvas)
     canvas.height = document.body.clientHeight;
 }
 
-let theRunner = new Runner();
-
 Vue.component('GameCanvas', {
     template : `
     <div>
@@ -19,18 +17,23 @@ Vue.component('GameCanvas', {
         initCanvasSize(this.$refs.canvas);
         this.start_runner();
     },
+    data:{
+        runner: null,
+        game: null
+    },
     methods : {
         start_runner() {
-            theRunner.start(this.$refs.canvas);
+            this.runner = new Runner(this.game, this.$refs.canvas);
         }
     }
 });
 
 var app = new Vue({
     el : '#app',
-    data : {gameRunning : false},
+    data : {gameRunning : false, game : null},
     methods : {
         runGame() {
+            this.game = new Game(16, 32, [ 3, 1, 1, 2 ]);
             this.gameRunning = true;
         }
     }
