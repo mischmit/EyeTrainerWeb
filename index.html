@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>EyeTrainerWeb</title>
+    <title>EyeTrainer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -9,8 +9,25 @@
     <div id="app">
         <game-canvas v-if="gameRunning"></game-canvas>
         <div v-else>
-            <h1>Welcome to EyeTrainer</h1>
-            <button v-on:click="runGame()">Start</button>
+            <h1>EyeTrainer</h1>
+            <h2>Usage description</h2>
+            <div>
+                <ul>
+                    <li>
+                        Keep your eyes focused on the center of the screen.
+                    </li>
+                    <li>
+                        Some light squares will appear at random locations every other cycle.
+                    </li>
+                    <li>
+                        When you can see a light square, hit <code>Space</code>.
+                    </li>
+                    <li>
+                        Hit <code>Escape</code> to pause the training.
+                    </li>
+                </ul>
+            </div>
+            <button v-on:click="runGame()">Start Training</button>
         </div>
     </div>
     <script type="module" src="main.js"></script>
